@@ -2,8 +2,16 @@ import numpy as np
 import pandas as pd 
 import joblib 
 import streamlit as st
+import os
 
-model=joblib.load("svc.joblib")
+MODEL_PATH=os.path.join(os.path.dirname(__file__),"SVC.joblib")
+
+@st.cache_resource
+def load_model():
+    return joblib.load("SVC.joblib")
+model=load_model()
+
+model=joblib.load("SVC.joblib")
 
 st.set_page_config(
     page_title="CANCER DETECTION",
